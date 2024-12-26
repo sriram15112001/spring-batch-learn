@@ -57,9 +57,10 @@ public class MyConfiguration {
     }
 
     @Bean
-    public Job maskingJob(JobRepository jobRepository, Step maskingStep){
+    public Job maskingJob(JobRepository jobRepository, Step maskingStep, BatchJobCompletedListener listener){
         return new JobBuilder("masking-job", jobRepository)
                 .start(maskingStep)
+                .listener(listener)
                 .build();
     }
 
